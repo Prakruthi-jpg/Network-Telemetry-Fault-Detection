@@ -1,0 +1,20 @@
+site_id,fault_type,start_ts,end_ts,affected_kpis,intensity
+S0,F1,2024-01-11 06:00:00,2024-01-11 23:45:00,"signal_quality_db, call_drop_rate, retransmission_rate",1.0
+S0,F3,2024-01-20 01:00:00,2024-01-20 03:45:00,"supply_voltage_v, temperature_c, cpu_load",1.0
+S0,F6,2024-01-14 17:00:00,2024-01-14 19:45:00,"downlink_traffic_gb, active_users, cpu_load, call_drop_rate",1.0
+S1,F2,2024-01-11 00:00:00,2024-01-12 11:45:00,handover_success_rate,1.0
+S1,F5,2024-01-13 09:00:00,2024-01-13 09:45:00,"uplink_interference_dbm, signal_quality_db, call_setup_success_rate",1.0
+S2,F4,2024-01-12 02:00:00,2024-01-12 05:45:00,"downlink_traffic_gb, active_users",1.0
+S3,F2,2024-01-14 12:00:00,2024-01-15 11:45:00,handover_success_rate,0.9
+S3,F5,2024-01-17 15:00:00,2024-01-17 16:45:00,"uplink_interference_dbm, signal_quality_db, call_setup_success_rate",1.0
+S3,F6,2024-01-11 19:00:00,2024-01-11 22:45:00,"downlink_traffic_gb, active_users, cpu_load, call_drop_rate",0.95
+S4,F3,2024-01-13 03:00:00,2024-01-13 07:45:00,"supply_voltage_v, temperature_c, cpu_load",0.9
+S4,F4,2024-01-15 14:00:00,2024-01-15 16:45:00,"downlink_traffic_gb, active_users",1.0
+S5,F1,2024-01-16 08:00:00,2024-01-16 19:45:00,"signal_quality_db, call_drop_rate, retransmission_rate",0.9
+S5,F5,2024-01-18 11:00:00,2024-01-18 12:15:00,"uplink_interference_dbm, signal_quality_db, call_setup_success_rate",0.95
+S6,F2,2024-01-18 06:00:00,2024-01-19 11:45:00,handover_success_rate,1.0
+S6,F6,2024-01-15 18:00:00,2024-01-15 20:45:00,"downlink_traffic_gb, active_users, cpu_load, call_drop_rate",1.0
+S7,F4,2024-01-19 01:00:00,2024-01-19 05:45:00,"downlink_traffic_gb, active_users",0.95
+S8,F3,2024-01-17 22:00:00,2024-01-18 01:45:00,"supply_voltage_v, temperature_c, cpu_load",1.0
+S8,F6,2024-01-20 20:00:00,2024-01-20 22:15:00,"downlink_traffic_gb, active_users, cpu_load, call_drop_rate",1.0
+S9,F5,2024-01-20 07:00:00,2024-01-20 07:30:00,"uplink_interference_dbm, signal_quality_db, call_setup_success_rate",1.0

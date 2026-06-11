@@ -1,0 +1,6 @@
+{
+  "threshold": 0.5,
+  "seed": 42,
+  "train_days": 10,
+  "window": 8
+}

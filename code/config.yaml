@@ -1,0 +1,191 @@
+seed: 42
+n_sites: 10
+n_days: 21
+interval_minutes: 15
+
+# Site archetypes (heterogeneity)
+site_profiles:
+  - name: urban_high
+    traffic_scale: 2.5
+    user_scale: 2.2
+    noise_scale: 1.0
+  - name: urban_mid
+    traffic_scale: 1.8
+    user_scale: 1.6
+    noise_scale: 1.0
+  - name: suburban
+    traffic_scale: 1.0
+    user_scale: 1.0
+    noise_scale: 1.1
+  - name: rural
+    traffic_scale: 0.4
+    user_scale: 0.35
+    noise_scale: 1.3
+  - name: highway
+    traffic_scale: 0.7
+    user_scale: 0.6
+    noise_scale: 1.2
+
+# Fault injection schedule
+# train_window: days 1-10 (index 0-9), eval_window: days 11-21 (index 10-20)
+faults:
+  # Training window faults (at most 3, faint)
+  - site: 2
+    type: F5
+    day: 5
+    hour: 14
+    duration_hours: 1
+    intensity: 0.4
+    label: train_faint
+  - site: 7
+    type: F1
+    day: 8
+    hour: 10
+    duration_hours: 8
+    intensity: 0.3
+    label: train_faint
+  - site: 4
+    type: F6
+    day: 3
+    hour: 18
+    duration_hours: 2
+    intensity: 0.35
+    label: train_faint
+
+  # Evaluation window faults (days 11-21)
+  # F1 - RF unit degradation (gradual)
+  - site: 0
+    type: F1
+    day: 11
+    hour: 6
+    duration_hours: 18
+    intensity: 1.0
+  - site: 5
+    type: F1
+    day: 16
+    hour: 8
+    duration_hours: 12
+    intensity: 0.9
+
+  # F2 - Clock sync drift (hardest)
+  - site: 1
+    type: F2
+    day: 11
+    hour: 0
+    duration_hours: 36
+    intensity: 1.0
+  - site: 3
+    type: F2
+    day: 14
+    hour: 12
+    duration_hours: 24
+    intensity: 0.9
+  - site: 6
+    type: F2
+    day: 18
+    hour: 6
+    duration_hours: 30
+    intensity: 1.0
+
+  # F3 - Power supply instability (intermittent)
+  - site: 0
+    type: F3
+    day: 20
+    hour: 1
+    duration_hours: 3
+    intensity: 1.0
+  - site: 4
+    type: F3
+    day: 13
+    hour: 3
+    duration_hours: 5
+    intensity: 0.9
+  - site: 8
+    type: F3
+    day: 17
+    hour: 22
+    duration_hours: 4
+    intensity: 1.0
+
+  # F4 - Sleeping cell
+  - site: 2
+    type: F4
+    day: 12
+    hour: 2
+    duration_hours: 4
+    intensity: 1.0
+  - site: 4
+    type: F4
+    day: 15
+    hour: 14
+    duration_hours: 3
+    intensity: 1.0
+  - site: 7
+    type: F4
+    day: 19
+    hour: 1
+    duration_hours: 5
+    intensity: 0.95
+
+  # F5 - Interference burst (sharp)
+  - site: 1
+    type: F5
+    day: 13
+    hour: 9
+    duration_hours: 1
+    intensity: 1.0
+  - site: 3
+    type: F5
+    day: 17
+    hour: 15
+    duration_hours: 2
+    intensity: 1.0
+  - site: 5
+    type: F5
+    day: 18
+    hour: 11
+    duration_hours: 1.5
+    intensity: 0.95
+  - site: 9
+    type: F5
+    day: 20
+    hour: 7
+    duration_hours: 0.75
+    intensity: 1.0
+
+  # F6 - Capacity overload (legitimate traffic surge)
+  - site: 0
+    type: F6
+    day: 14
+    hour: 17
+    duration_hours: 3
+    intensity: 1.0
+  - site: 3
+    type: F6
+    day: 11
+    hour: 19
+    duration_hours: 4
+    intensity: 0.95
+  - site: 6
+    type: F6
+    day: 15
+    hour: 18
+    duration_hours: 3
+    intensity: 1.0
+  - site: 8
+    type: F6
+    day: 20
+    hour: 20
+    duration_hours: 2.5
+    intensity: 1.0
+
+# Detection hyperparameters
+detection:
+  train_days: 10
+  window_size: 8        # rolling window (timesteps) for feature engineering
+  contamination: 0.02   # IsolationForest expected contamination in training
+  fa_budget_per_site_per_day: 2.0   # max false alarms budget
+
+# Evaluation
+evaluation:
+  overlap_fraction: 0.25  # fraction of fault window that must be covered for event detection
